@@ -1,13 +1,13 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: myapp
+  name: nginx-app
   namespace: argocd
 spec:
   project: default
   source:
-    repoURL: "https://github.com/<YOUR_GITHUB_USERNAME>/gitops-app-manifests.git"
-    targetRevision: HEAD
+    repoURL: https://github.com/sanjayhar/gitops-app-manifests.git
+    targetRevision: main
     path: base
   destination:
     server: https://kubernetes.default.svc
@@ -16,6 +16,3 @@ spec:
     automated:
       prune: true
       selfHeal: true
-    syncOptions:
-      - CreateNamespace=true
-
